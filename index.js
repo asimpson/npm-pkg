@@ -1,4 +1,5 @@
 'use strict';
+
 const shell = require('child_process');
 const aws = require('aws-sdk');
 const fs = require('fs');
@@ -11,7 +12,7 @@ exports.handler = (event, context, callback) => {
   if (install.stderr.length) {
     callback(`install error: ${install.stderr.toString()}`);
   } else {
-    const tar = shell.spawnSync('tar', ['-cf', 'pkg.tar', 'node_modules'], {cwd: '/tmp'});
+    const tar = shell.spawnSync('tar', ['-cf', 'pkg.tar', 'node_modules'], { cwd: '/tmp' });
     if (tar.stderr.length) {
       callback(`tar error: ${tar.stderr.toString()}`);
     } else {
